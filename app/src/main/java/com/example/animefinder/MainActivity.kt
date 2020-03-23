@@ -11,17 +11,12 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var toolbar: ActionBar
     val searchFragment: SearchFragment = SearchFragment.newInstance()
-    val favFragment: FavFragment = FavFragment.newInstance()
     val aboutFragment: AboutFragment = AboutFragment.newInstance()
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.search -> {
                 openFragment(searchFragment)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.favourites -> {
-                openFragment(favFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.about -> {
@@ -35,7 +30,6 @@ class MainActivity : AppCompatActivity() {
     private fun openFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragment)
-        transaction.addToBackStack(null)
         transaction.commit()
     }
 

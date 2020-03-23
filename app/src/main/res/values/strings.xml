@@ -5,4 +5,9 @@
     <string name="about_thanks_text">Huge thanks to <a href="https://trace.moe">WAIT</a> for the API!</string>
     <string name="choose_image_button_text">Choose Image</string>
     <string name="see_results_button_text">Results ➜</string>
+    <string name="original_name">Original name:</string>
+    <string name="english_name">English name:</string>
+    <string name="episode">Episode:</string>
+    <string name="missing_value">–</string>
+    <string name="probability_label">Probability:</string>
 </resources>

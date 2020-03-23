@@ -6,10 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SearchFragment"
-    android:name="androidx.navigation.fragment.NavHostFragment"
-    app:navGraph="@navigation/nav_graph"
-    app:defaultNavHost="true">
+    tools:context=".SearchFragment">
 
     <ImageView
         android:id="@+id/selected_img"

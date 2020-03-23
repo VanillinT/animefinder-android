@@ -19,20 +19,13 @@ import androidx.core.content.ContextCompat.checkSelfPermission
 import android.content.ContentResolver
 import android.graphics.Bitmap
 import android.provider.MediaStore
-import androidx.core.os.bundleOf
-import androidx.navigation.fragment.findNavController
 import com.android.volley.toolbox.JsonObjectRequest
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 import android.util.Base64
-import android.util.JsonReader
 import android.util.Log
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
 import com.android.volley.*
 import com.android.volley.Response
-import java.io.StringReader
-
 
 class SearchFragment : Fragment() {
     private lateinit var imageView: ImageView
@@ -41,7 +34,7 @@ class SearchFragment : Fragment() {
     private lateinit var imgUri: Uri
     private lateinit var contentResolver: ContentResolver
     private var imageData: ByteArray? = null
-    private var animeList: String = ""
+    private var animeListStr: String = ""
     private val url = "https://trace.moe/api/search"
     private lateinit var bitmap: Bitmap
 
@@ -90,14 +83,17 @@ class SearchFragment : Fragment() {
 
         // Sending data from one fragment to another fragment
         resButton.setOnClickListener {
-            if(animeList != "") {
+            if(animeListStr != "") {
+                Log.d("ANIMELISTSTR",animeListStr)
+                val animeListFragment = AnimeListFragment.newInstance(animeListStr)
+                val transaction = childFragmentManager.beginTransaction()
+                transaction.replace(R.id.search_container, animeListFragment, "AnimeList")
+                transaction.addToBackStack("AnimeList")
+                transaction.commit()
 
-                val action = SearchFragmentDirections.actionSearchFragmentToAnimeListFragment()
-                //action.setAnimeList(animeList)
-                findNavController().navigate(action)
             }
             else {
-                Toast.makeText(view.context, "Error sending request to a server", Toast.LENGTH_SHORT).show()
+                Toast.makeText(view.context, "Server returned null", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -126,10 +122,9 @@ class SearchFragment : Fragment() {
 
             val request = JsonObjectRequest(Request.Method.POST, url, postData,
                 Response.Listener { response ->
-                    val docs = response.get("docs").toString()
-                    Log.d("ANIMELISTRECEIVED", docs)
+                    val json = response.get("docs").toString()
                     resButton.visibility = View.VISIBLE
-                    animeList = docs
+                    animeListStr = json
                 }, Response.ErrorListener {
                     // Error in request
                     val text = "Volley error: $it"

@@ -6,10 +6,6 @@
         android:title="Search"
         android:icon="@drawable/ic_search"/>
     <item
-        android:id="@+id/favourites"
-        android:title="Favourites"
-        android:icon="@drawable/ic_star"/>
-    <item
         android:id="@+id/about"
         android:title="About"
         android:icon="@drawable/ic_info"/>

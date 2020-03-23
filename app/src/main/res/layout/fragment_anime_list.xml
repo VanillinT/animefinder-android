@@ -2,12 +2,15 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AnimeListFragment">
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:clickable="true">
 
-    <TextView
+    <ListView
         android:id="@+id/animeList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"></ListView>
 </androidx.constraintlayout.widget.ConstraintLayout>
