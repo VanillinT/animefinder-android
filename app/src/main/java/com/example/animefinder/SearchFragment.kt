@@ -26,6 +26,7 @@ import android.util.Base64
 import android.util.Log
 import com.android.volley.*
 import com.android.volley.Response
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class SearchFragment : Fragment() {
     private lateinit var imageView: ImageView
@@ -129,6 +130,7 @@ class SearchFragment : Fragment() {
     private fun uploadImage() {
         if (imgUri != null) run {
             val postData: JSONObject = getPostData()
+            Toast.makeText(context, "Retrieving data, please wait...", Toast.LENGTH_SHORT).show()
 
             val request = JsonObjectRequest(Request.Method.POST, url, postData,
                 Response.Listener { response ->
