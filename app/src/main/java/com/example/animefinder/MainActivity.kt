@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun openFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
+        transaction.setCustomAnimations(R.anim.nav_default_enter_anim, R.anim.nav_default_pop_exit_anim)
         transaction.replace(R.id.container, fragment)
         transaction.commit()
     }

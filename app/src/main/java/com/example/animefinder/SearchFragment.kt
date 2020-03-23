@@ -29,6 +29,7 @@ import com.android.volley.Response
 
 class SearchFragment : Fragment() {
     private lateinit var imageView: ImageView
+    private lateinit var selectImgButton: Button
     private lateinit var resButton: Button
     private lateinit var layout: ConstraintLayout
     private lateinit var imgUri: Uri
@@ -51,28 +52,16 @@ class SearchFragment : Fragment() {
         contentResolver = container!!.context.contentResolver
         val view = inflater.inflate(R.layout.fragment_search, container, false)
         imageView = view.findViewById(R.id.selected_img)
+        selectImgButton = view.findViewById(R.id.button_upload_photo)
         resButton = view.findViewById(R.id.button_see_results)
         layout = view.findViewById(R.id.search_container)
 
         imageView.setOnClickListener {
-            //check runtime permission
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                if (checkSelfPermission(view.context, Manifest.permission.READ_EXTERNAL_STORAGE) ==
-                    PackageManager.PERMISSION_DENIED){
-                    //permission denied
-                    val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE);
-                    //show popup to request runtime permission
-                    requestPermissions(permissions, PERMISSION_CODE)
-                }
-                else{
-                    //permission already granted
-                    pickImageFromGallery()
-                }
-            }
-            else{
-                //system OS is < Marshmallow
-                pickImageFromGallery()
-            }
+            showImageSelection(view)
+        }
+
+        selectImgButton.setOnClickListener {
+            showImageSelection(view)
         }
 
         return view
@@ -84,12 +73,12 @@ class SearchFragment : Fragment() {
         // Sending data from one fragment to another fragment
         resButton.setOnClickListener {
             if(animeListStr != "") {
-                Log.d("ANIMELISTSTR",animeListStr)
                 val animeListFragment = AnimeListFragment.newInstance(animeListStr)
-                val transaction = childFragmentManager.beginTransaction()
-                transaction.replace(R.id.search_container, animeListFragment, "AnimeList")
-                transaction.addToBackStack("AnimeList")
-                transaction.commit()
+                val transaction = fragmentManager?.beginTransaction()
+                transaction?.setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_close_exit)
+                transaction?.replace(R.id.container, animeListFragment, "AnimeList")
+                transaction?.addToBackStack("AnimeList")
+                transaction?.commit()
 
             }
             else {
@@ -97,6 +86,27 @@ class SearchFragment : Fragment() {
             }
         }
 
+    }
+
+    private fun showImageSelection(view: View) {
+        //check runtime permission
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if (checkSelfPermission(view.context, Manifest.permission.READ_EXTERNAL_STORAGE) ==
+                PackageManager.PERMISSION_DENIED){
+                //permission denied
+                val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE);
+                //show popup to request runtime permission
+                requestPermissions(permissions, PERMISSION_CODE)
+            }
+            else{
+                //permission already granted
+                pickImageFromGallery()
+            }
+        }
+        else{
+            //system OS is < Marshmallow
+            pickImageFromGallery()
+        }
     }
 
     private fun pickImageFromGallery() {

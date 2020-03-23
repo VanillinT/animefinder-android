@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/search_container"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,36 +9,54 @@
     android:orientation="vertical"
     tools:context=".SearchFragment">
 
-    <ImageView
-        android:id="@+id/selected_img"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_marginTop="0dp"
-        android:background="@drawable/rounded_button"
-        android:padding="70dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_add_a_photo"
-        app:layout_constraintBottom_toTopOf="@+id/button_see_results"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
-
-    <Button
-        android:id="@+id/button_see_results"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/rounded_button"
-        android:paddingHorizontal="15dp"
-        android:text="@string/see_results_button_text"
-        android:textColor="@color/theme_main"
-        android:visibility="invisible"
+        android:layout_margin="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="8dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:id="@+id/selected_img"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                app:layout_constraintDimensionRatio="1:1"
+                android:padding="70dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_add_a_photo"
+                android:background="?attr/selectableItemBackground"/>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_upload_photo"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/upload_a_photo_button_text" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_see_results"
+                    style="?attr/buttonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/see_results_button_text"
+                    android:visibility="invisible" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout >

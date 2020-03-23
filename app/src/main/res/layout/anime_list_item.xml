@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="?attr/selectableItemBackground">
 
 
-    <TextView
+
+<TextView
         android:id="@+id/probability_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,7 +20,8 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/probability"
-        app:layout_constraintTop_toBottomOf="@+id/english_name" />
+        app:layout_constraintTop_toBottomOf="@+id/english_name"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/probability"
@@ -84,11 +87,13 @@
         android:id="@+id/episode_number_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:text="@string/episode"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/probability_label"
+        app:layout_constraintEnd_toStartOf="@+id/episode_number"
         app:layout_constraintRight_toRightOf="@+id/episode_number" />
 
     <TextView

@@ -10,4 +10,5 @@
     <string name="episode">Episode:</string>
     <string name="missing_value">–</string>
     <string name="probability_label">Probability:</string>
+    <string name="upload_a_photo_button_text">Upload a photo</string>
 </resources>

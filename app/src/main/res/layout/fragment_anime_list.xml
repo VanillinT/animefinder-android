@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:orientation="vertical"
-    android:clickable="true">
+    android:clickable="true"
+    android:focusable="auto">
 
     <ListView
         android:id="@+id/animeList"
